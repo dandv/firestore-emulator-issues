@@ -1,6 +1,11 @@
-# Firestore default project ID
+# Firestore emulator default project ID
 
 The [firestore-projectId.mjs](firestore-projectId.mjs) script in this repo attempts to connect to the local Firestore emulator (run separately with `firebase emulators only:firestore`). Without passing any specific options to `initializeApp()` or `getFirestore()`, it's unclear which project and which database are selected. The Firebase emulator GUI at http://127.0.0.1:4000/ shows the project name from `.firebaserc` (`"ondocumentcreated-bug"`), but the Firestore tab does *not* show any of the documents written from the script.
+
+Running `firestore-projectId.mjs` with Deno shows that:
+* `.firebaserc` is NOT read
+* all these 4 env vars are not present: `FIREBASE_CONFIG`, `GOOGLE_APPLICATION_CREDENTIALS`, `GOOGLE_CLOUD_PROJECT`, `GCLOUD_PROJECT`
+* documents are created and retrieved successfully, just not from the Firestore database of the "ondocumentcreated-bug" project, even when offline
 
 
 # Privilege escalation
