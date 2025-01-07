@@ -1,0 +1,15 @@
+{
+  "name": "firestore-emulator-issues",
+  "version": "1.0.0",
+  "description": "Where does Firestore get its settings from when none are specified?",
+  "license": "MIT",
+  "author": "dandv",
+  "type": "module",
+  "main": "priv-esc.mjs",
+  "scripts": {
+    "start": "node firestore-projectId.mjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.2"
+  }
+}
