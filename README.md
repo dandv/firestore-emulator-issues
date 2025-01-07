@@ -10,7 +10,12 @@ Running `firestore-projectId.mjs` with Deno shows that:
 
 # Privilege escalation
 
-Running [priv-esc](priv-esc.mjs) with Deno reveals that it attempts to, first, read all environment variables (see the line `⚠️  Deno requests env access.`):
+Running [priv-esc](priv-esc.mjs) with Deno reveals that it attempts to, first, read all environment variables (see the line `⚠️  Deno requests env access.`). This happens when the following line is executed:
+
+```ts
+const resultsSnapshot = await resultsRef.get();
+```
+
 
 ```text
 $ deno priv-esc.mjs 
@@ -46,7 +51,7 @@ Full env access, attempt to call /bin/sh...
 ┗ Allow? [y/n/A] (y = yes, allow; n = no, deny; A = allow all env permissions) > 
 ```
 
-Then, execute `/bin/sh` (`⚠️  Deno requests run access to "/bin/sh"`):
+Then, Firestore apparently tries to launch `/bin/sh` (`⚠️  Deno requests run access to "/bin/sh"`):
 
 ```text
 [...]
